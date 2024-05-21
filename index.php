@@ -76,7 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
 	      <img src="vendor/img/logo_index.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
-      <span class="brand-text font-weight-light">ESP32 Presensi</span>
+      <span class="brand-text font-weight-light">PRESENSI SDN013</span>
     </a>
 
     <!-- Sidebar -->
@@ -119,7 +119,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="index.php?page=pegawai" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Daftar Pegawai
+                Daftar Pengguna
               </p>
             </a>
           </li>
@@ -128,7 +128,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="index.php?page=pengguna" class="nav-link">
               <i class="nav-icon fas fa-user-lock"></i>
               <p>
-                Daftar Pengguna 
+                Daftar Admin
               </p>
             </a>
           </li>

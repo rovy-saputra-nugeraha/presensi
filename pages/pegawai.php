@@ -31,7 +31,7 @@ if (isset($_SESSION['page'])) {
 						<thead class="bg-secondary">
 							<tr>
 								<th>UID</th>
-								<th>Nama Pegawai</th>
+								<th>Nama Pengguna</th>
 								<th>Chat ID Telegram</th>
 								<th></th>
 							</tr>

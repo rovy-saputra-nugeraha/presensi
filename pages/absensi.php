@@ -65,7 +65,7 @@ $flag='0';
 									<thead>
 										<tr>
 											<th>UID</th>
-											<th>Nama Pegawai</th>
+											<th>Nama Pengguna</th>
 											<th>Jam Masuk</th>
 											<th>Jam Keluar</th>
 											<th>Tanggal</th>
