@@ -8,12 +8,12 @@ if (isset($_SESSION['page'])) {
 	<div class="container-fluid">
 		<div class="row mb-2">
 			<div class="col-sm-6">
-				<h1 class="m-0 text-dark">DAFTAR PEGAWAI</h1>
+				<h1 class="m-0 text-dark">DAFTAR PENGGUNA</h1>
 			</div><!-- /.col -->
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
 					<li class="breadcrumb-item"><a href="index.php?page=dashboard">Home</a></li>
-					<li class="breadcrumb-item active">Daftar Pegawai</li>
+					<li class="breadcrumb-item active">Daftar Pengguna</li>
 				</ol>
 			</div><!-- /.col -->
 		</div><!-- /.row -->
@@ -31,12 +31,13 @@ if (isset($_SESSION['page'])) {
 						<thead class="bg-secondary">
 							<tr>
 								<th>UID</th>
+								<th>NISN</th>
 								<th>Nama Pengguna</th>
+								<th>Tahun Masuk</th>
 								<th>Chat ID Telegram</th>
-								<th></th>
+								<th>Aksi</th>
 							</tr>
 						</thead>
-
 
 						<tbody class="bg-white">
 							<?php
@@ -46,12 +47,14 @@ if (isset($_SESSION['page'])) {
 
 								<tr class="odd gradeX">
 									<td><?php echo $data['id']; ?></td>
+									<td><?php echo $data['nisn']; ?></td>
 									<td><?php echo $data['nama']; ?></td>
+									<td><?php echo $data['tahun_masuk']; ?></td>
 									<td><?php echo $data['chatid']; ?></td>
 									<td>
 										<center>
 											<a href="./konfig/delete_pegawai.php?id=<?php echo $data['id']; ?>" class="btn btn-outline-danger btn-sm" onclick="return confirm('Apakah anda yakin?')" data-toggle="tooltip" title="Hapus"><i class="fas fa-trash-alt"></i></a>
-											<a href="./index.php?page=edit_pegawai&id=<?php echo $data['id']; ?>&nama=<?php echo $data['nama']; ?>&chatid=<?php echo $data['chatid']; ?>" class="btn btn-outline-primary btn-sm ml-3" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
+											<a href="./index.php?page=edit_pegawai&id=<?php echo $data['id']; ?>&nisn=<?php echo $data['nisn'];?>&tahun_masuk=<?php echo $data['tahun_masuk'];  ?>&nama=<?php echo $data['nama']; ?>&chatid=<?php echo $data['chatid'];?>" class="btn btn-outline-primary btn-sm ml-3" data-toggle="tooltip" title="Edit"><i class="fas fa-edit"></i></a>
 										</center>
 									</td>
 								</tr>
@@ -64,7 +67,6 @@ if (isset($_SESSION['page'])) {
 
 				</div>
 			</div>
-
 
 		</div>
 	</div>

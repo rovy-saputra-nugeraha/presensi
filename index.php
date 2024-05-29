@@ -62,12 +62,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
+      <li class="nav-item d-sm-none">
+        <a class="nav-link" href="konfig/logout.php" onclick="return confirm('Ingin keluar ??')">
+          <i class="fas fa-sign-out-alt"></i>
+        </a>
+      </li>
+      <!-- Hide on small screens -->
       <li class="nav-item d-none d-sm-inline-block">
         <a class="nav-link" href="konfig/logout.php" onclick="return confirm('Ingin keluar ??')">
           <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>
     </ul>
+
   </nav>
   <!-- /.navbar -->
 
@@ -128,7 +135,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a href="index.php?page=pengguna" class="nav-link">
               <i class="nav-icon fas fa-user-lock"></i>
               <p>
-                Daftar Admin
+                Daftar Operator
               </p>
             </a>
           </li>
@@ -226,7 +233,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2019 <a href="https://dt-production.com">DT Production</a>.</strong>
+    <strong>Copyright &copy; 2024 <a href="#">SDN013TPIBARAT</a>.</strong>
   </footer>
 </div>
 <!-- ./wrapper -->

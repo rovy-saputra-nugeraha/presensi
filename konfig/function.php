@@ -129,21 +129,23 @@ function postdata($uid, $hari_ini, $time, $cek_absen)
 
 function telegram($uid, $jam_absen, $status, $secret_token)
 {
-	global $dbconnect;
-	$sql = mysqli_query($dbconnect, "SELECT * FROM tb_id WHERE id='$uid'");
-	while ($results = mysqli_fetch_array($sql)) {
-		$nama = $results['nama'];
-		$chat_id = $results['chatid'];
-	}
-	$message_text = "Halo " . $nama . ",\nPresensi anda telah berhasil disimpan. dengan status saat ini : \n" . $status . "\njam absen : " . $jam_absen;
-	$url = "https://api.telegram.org/bot" . $secret_token . "/sendMessage?parse_mode=markdown&chat_id=" . $chat_id;
-	$url = $url . "&text=" . urlencode($message_text);
-	$ch = curl_init();
-	$optArray = array(
-		CURLOPT_URL => $url,
-		CURLOPT_RETURNTRANSFER => true
-	);
-	curl_setopt_array($ch, $optArray);
-	curl_exec($ch);
-	curl_close($ch);
+    global $dbconnect;
+    $sql = mysqli_query($dbconnect, "SELECT * FROM tb_id WHERE id='$uid'");
+    while ($results = mysqli_fetch_array($sql)) {
+        $nama = $results['nama'];
+        $chat_id = $results['chatid'];
+        $nisn = $results['nisn'];
+        $tahun_masuk = $results['tahun_masuk'];
+    }
+    $message_text = "Halo " . $nama . ",\nPresensi anda telah berhasil disimpan dengan status saat ini: \n" . $status . "\nJam absen: " . $jam_absen . "\nNISN: " . $nisn . "\nTahun Masuk: " . $tahun_masuk;
+    $url = "https://api.telegram.org/bot" . $secret_token . "/sendMessage?parse_mode=markdown&chat_id=" . $chat_id;
+    $url = $url . "&text=" . urlencode($message_text);
+    $ch = curl_init();
+    $optArray = array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true
+    );
+    curl_setopt_array($ch, $optArray);
+    curl_exec($ch);
+    curl_close($ch);
 }
