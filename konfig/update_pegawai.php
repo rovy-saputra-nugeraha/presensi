@@ -6,7 +6,7 @@ if (isset($_SESSION['page'])) {
         include 'connection.php';
         $parameter = mysqli_real_escape_string($dbconnect, $_POST['parameter']);
         $id = mysqli_real_escape_string($dbconnect, $_POST['uid']);
-				$nisn = mysqli_real_escape_string($dbconnect, $_POST['nisn']);
+		$nisn = mysqli_real_escape_string($dbconnect, $_POST['nisn']);
         $tahun_masuk = mysqli_real_escape_string($dbconnect, $_POST['tahun_masuk']);
         $nama = mysqli_real_escape_string($dbconnect, $_POST['nama']);
         $chatid = mysqli_real_escape_string($dbconnect, $_POST['chatid']);
