@@ -133,11 +133,12 @@ function telegram($uid, $jam_absen, $status, $secret_token)
     $sql = mysqli_query($dbconnect, "SELECT * FROM tb_id WHERE id='$uid'");
     while ($results = mysqli_fetch_array($sql)) {
         $nama = $results['nama'];
-        $chat_id = $results['chatid'];
-        $nisn = $results['nisn'];
+				$nisn = $results['nisn'];
         $tahun_masuk = $results['tahun_masuk'];
+        $chat_id = $results['chatid'];
+        
     }
-    $message_text = "Halo " . $nama . ",\nPresensi anda telah berhasil disimpan dengan status saat ini: \n" . $status . "\nJam absen: " . $jam_absen . "\nNISN: " . $nisn . "\nTahun Masuk: " . $tahun_masuk;
+    $message_text = "Halo " . $nama . ",\nPresensi anda telah berhasil disimpan dengan status saat ini: \n". "\nNISN: " . $nisn . "\nTahun Masuk: " . $tahun_masuk . $status . "\nJam absen: " . $jam_absen;
     $url = "https://api.telegram.org/bot" . $secret_token . "/sendMessage?parse_mode=markdown&chat_id=" . $chat_id;
     $url = $url . "&text=" . urlencode($message_text);
     $ch = curl_init();
