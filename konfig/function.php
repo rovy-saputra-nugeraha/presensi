@@ -85,10 +85,10 @@ function postdata($uid, $hari_ini, $time, $cek_absen)
     if ($auth > 0) {
         if ($cek_absen == "in") {
             mysqli_query($dbconnect, "UPDATE tb_absen SET masuk='$time', status = 'B' WHERE id='$uid' AND date='$hari_ini'");
-            return ("Presensi Masuk");
+            return ("PRESENSI TEPAT WAKTU!");
         } else if ($cek_absen == "terlambat") {
             mysqli_query($dbconnect, "UPDATE tb_absen SET masuk='$time', status = 'T' WHERE id='$uid' AND date='$hari_ini'");
-            return ("Presensi Terlambat");
+            return ("PRESENSI TERLAMBAT!");
         } else if ($cek_absen == "out") {
             $cek_masuk = mysqli_query($dbconnect, "select * from tb_absen WHERE id='$uid' AND date='$hari_ini'");
             while ($data = mysqli_fetch_array($cek_masuk)) {
@@ -96,32 +96,32 @@ function postdata($uid, $hari_ini, $time, $cek_absen)
                 $status = $data['status'];
                 if ($masuk != "" && $status != "T") {
                     mysqli_query($dbconnect, "UPDATE tb_absen SET keluar='$time', status = 'H' WHERE id='$uid' AND date='$hari_ini'");
-                    return ("Presensi Hadir");
+                    return ("PRESENSI TEPAT WAKTU!");
                 } else if ($masuk != "" && $status == "T") {
                     mysqli_query($dbconnect, "UPDATE tb_absen SET keluar='$time', status = 'T' WHERE id='$uid' AND date='$hari_ini'");
-                    return ("Presensi Terlambat");
+                    return ("PRESENSI TERLAMBAT!");
                 } else if ($masuk == "" && $status == "B") {
                     mysqli_query($dbconnect, "UPDATE tb_absen SET keluar='$time', status = 'B' WHERE id='$uid' AND date='$hari_ini'");
-                    return ("Presensi Bolos");
+                    return ("PRESENSI BOLOS!");
                 }
             }
         } else if ($cek_absen == "bolos") {
             mysqli_query($dbconnect, "UPDATE tb_absen SET keluar='$time', status = 'B' WHERE id='$uid' AND date='$hari_ini'");
-            return ("Presensi Selesai");
+            return ("PRESENSI SELESAI!");
         }
     } else {
         if ($cek_absen == "in") {
             mysqli_query($dbconnect, "INSERT INTO tb_absen VALUES ('$uid','$time','','$hari_ini','B','')");
-            return ("Presensi Masuk");
+            return ("PRESENSI TEPAT WAKTU!");
         } else if ($cek_absen == "terlambat") {
             mysqli_query($dbconnect, "INSERT INTO tb_absen VALUES ('$uid','$time','','$hari_ini','T','')");
-            return ("Presensi Terlambat");
+            return ("PRESENSI TERLAMBAT!");
         } else if ($cek_absen == "out") {
             mysqli_query($dbconnect, "INSERT INTO tb_absen VALUES ('$uid','','$time','$hari_ini','B','')");
-            return ("Presensi Keluar");
+            return ("PRESENSI KELUAR!");
         } else if ($cek_absen == "bolos") {
             mysqli_query($dbconnect, "INSERT INTO tb_absen VALUES ('$uid','','$time','$hari_ini','B','')");
-            return ("Presensi Bolos");
+            return ("PRESENSI BOLOS!");
         }
     }
     mysqli_close($dbconnect);
@@ -129,24 +129,24 @@ function postdata($uid, $hari_ini, $time, $cek_absen)
 
 function telegram($uid, $jam_absen, $status, $secret_token)
 {
-    global $dbconnect;
-    $sql = mysqli_query($dbconnect, "SELECT * FROM tb_id WHERE id='$uid'");
-    while ($results = mysqli_fetch_array($sql)) {
-        $nama = $results['nama'];
-        $chat_id = $results['chatid'];
-        $nisn = $results['nisn'];
-        $tahun_masuk = $results['tahun_masuk'];
-    }
-    $message_text = "Halo " . $nama . ",\nPresensi anda telah berhasil disimpan dengan status saat ini: \n" . $status . "\nJam absen: " . $jam_absen;
-    $url = "https://api.telegram.org/bot" . $secret_token . "/sendMessage?parse_mode=markdown&chat_id=" . $chat_id;
-    $url = $url . "&text=" . urlencode($message_text);
-    $ch = curl_init();
-    $optArray = array(
-        CURLOPT_URL => $url,
-        CURLOPT_RETURNTRANSFER => true
-    );
-    curl_setopt_array($ch, $optArray);
-    curl_exec($ch);
-    curl_close($ch);
+	global $dbconnect;
+	$sql = mysqli_query($dbconnect, "SELECT * FROM tb_id WHERE id='$uid'");
+	while ($results = mysqli_fetch_array($sql)) {
+		$nama = $results['nama'];
+		$chat_id = $results['chatid'];
+		$nisn = $results['nisn'];
+		$tahun_masuk = $results['tahun_masuk'];
+	}
+	$message_text = "Halo " . $nama . "\nNISN : " . $nisn . "\nTahun Masuk : " . $tahun_masuk . "\nWaktu Absen : " . $jam_absen . ",\nPresensi anda telah berhasil disimpan. dengan status saat ini : \n" . $status;
+	$url = "https://api.telegram.org/bot" . $secret_token . "/sendMessage?parse_mode=markdown&chat_id=" . $chat_id;
+	$url = $url . "&text=" . urlencode($message_text);
+	$ch = curl_init();
+	$optArray = array(
+		CURLOPT_URL => $url,
+		CURLOPT_RETURNTRANSFER => true
+	);
+	curl_setopt_array($ch, $optArray);
+	curl_exec($ch);
+	curl_close($ch);
 }
 ?>
