@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Feb 2023 pada 07.41
--- Versi server: 10.1.34-MariaDB
--- Versi PHP: 7.2.8
+-- Waktu pembuatan: 09 Jun 2024 pada 04.28
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -35,7 +34,7 @@ CREATE TABLE `tb_absen` (
   `date` date NOT NULL,
   `status` varchar(10) NOT NULL,
   `Keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -47,8 +46,10 @@ CREATE TABLE `tb_id` (
   `id` varchar(50) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `chatid` varchar(50) NOT NULL,
-  `notifikasi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `notifikasi` int(11) NOT NULL,
+  `tahun_masuk` varchar(25) NOT NULL,
+  `nisn` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,7 @@ CREATE TABLE `tb_pengguna` (
   `username` varchar(22) NOT NULL,
   `password` varchar(22) NOT NULL,
   `level` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `tb_pengguna`
@@ -81,7 +82,7 @@ CREATE TABLE `tb_rfid` (
   `date` date NOT NULL,
   `time` time NOT NULL,
   `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -99,14 +100,14 @@ CREATE TABLE `tb_settings` (
   `timezone` varchar(22) NOT NULL,
   `admin_uid` varchar(50) NOT NULL,
   `bot_token` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `tb_settings`
 --
 
 INSERT INTO `tb_settings` (`masuk_mulai`, `masuk_akhir`, `keluar_mulai`, `keluar_akhir`, `libur1`, `libur2`, `timezone`, `admin_uid`, `bot_token`) VALUES
-('00:00:00', '08:15:00', '16:00:00', '20:30:00', 'Sabtu', 'Minggu', 'Asia/Jakarta', '1749B411', 'XXXXXXXXX');
+('00:00:00', '08:15:00', '16:00:00', '20:30:00', 'Rabu', 'Minggu', 'Asia/Jakarta', '338D3735', '6751977753:AAEwU5UFhwBbeIfupfrr7xg4_Utmbrnxefk');
 
 --
 -- Indexes for dumped tables
